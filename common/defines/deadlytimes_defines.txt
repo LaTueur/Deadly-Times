@@ -1,0 +1,6 @@
+﻿NChildbirth = {
+    CHILD_BIRTH_TO_PREGNANCY_WAIT = 2
+}
+NChildbirth = {
+    CHANCE_OF_LOWERED_CHILD_LIMIT = 0.2
+}

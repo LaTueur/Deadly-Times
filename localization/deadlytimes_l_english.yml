@@ -1,0 +1,30 @@
+﻿l_english:
+ rule_pregnancy_complication_frequency:0 "Pregnancy Complications"
+ rule_contagious_disease_types:0 "New Contagious Disease Types"
+ rule_player_pregnancy_complication_protection:0 "Player Pregnancy Complication Protection"
+
+ setting_more_minor_disease_frequency:0 "More"
+ setting_more_minor_disease_frequency_desc:0 "Minor diseases will appear more often."
+ setting_extreme_minor_disease_frequency:0 "Extreme"
+ setting_extreme_minor_disease_frequency_desc:0 "Minor diseases will appear extremely often."
+
+ setting_fewer_pregnancy_complication_frequency:0 "Fewer"
+ setting_fewer_pregnancy_complication_frequency_desc:0 "Pregnancy complications will happen less often."
+ setting_default_pregnancy_complication_frequency:0 "Default"
+ setting_default_pregnancy_complication_frequency_desc:0 "Pregnancy complications will happen as per normal."
+ setting_more_pregnancy_complication_frequency:0 "More"
+ setting_more_pregnancy_complication_frequency_desc:0 "Pregnancy complications will happen more often."
+ setting_extreme_pregnancy_complication_frequency:0 "Extreme"
+ setting_extreme_pregnancy_complication_frequency_desc:0 "Pregnancy complications will happen extremely often."
+
+ setting_default_contagious_disease_types:0 "Off"
+ setting_default_contagious_disease_types_desc:0 "Only Smallpox and the Black Death will be contagious."
+ setting_more_contagious_disease_types:0 "On"
+ setting_more_contagious_disease_types_desc:0 "Pneumonia and Camp Fever will sometimes start to spread in the court like Smallpox and the Black Death."
+
+ setting_default_player_pregnancy_complication_protection:0 "Default"
+ setting_default_player_pregnancy_complication_protection_desc:0 "The player characters will never die in childbirth and will less often get ill after giving birth. Other pregnancy complications happen as per normal."
+ setting_no_player_pregnancy_complication_protection:0 "No Protection"
+ setting_no_player_pregnancy_complication_protection_desc:0 "The player characters will experience pregnancy complications at the default rate."
+ setting_death_player_pregnancy_complication_protection:0 "Protection from Death"
+ setting_death_player_pregnancy_complication_protection_desc:0 "The player characters will never die in childbirth but more likely get sick after giving birth."

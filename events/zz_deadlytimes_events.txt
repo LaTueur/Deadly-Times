@@ -1,0 +1,224 @@
+﻿namespace = deadlytimes
+namespace = pregnancy
+
+pregnancy.0001 = {
+	hidden = yes
+	immediate = {
+		#PREGNANCY COMPLICATION CALCULATIONS & FLAG-SETTING
+		random_list = {
+			200 = { #All goes smoothly!
+				#Less likely if health is bad
+				modifier = {
+					health <= fine_health
+					add = -10
+				}
+				modifier = {
+					health <= poor_health
+					add = -15
+				}
+
+				#More kids means less risk of complications!
+				modifier = {
+					add = 5
+					any_child = {
+						even_if_dead = yes
+						count >= 2
+					}
+				}
+				modifier = {
+					add = 5
+					any_child = {
+						even_if_dead = yes
+						count >= 4
+					}
+				}
+
+				#More likely if you have sacred childbirth
+				modifier = {
+					factor = 2 # Religious doctrine focusing on providing a sanitary birthing chamber and supplied should have a substantial impact on birth complications.
+					faith = {
+						has_doctrine = tenet_sacred_childbirth
+					}
+				}
+				#More likely if the Dynasty has the Kin legacy
+				modifier = {
+					factor = 1.5 # So too should constant care of pregnant/birthing mothers.
+					has_dynasty = yes
+					dynasty = {
+						has_dynasty_perk = kin_legacy_3
+					}
+                }
+				
+				# Game rules
+				
+				modifier = {
+					factor = 0.5
+					has_game_rule = more_pregnancy_complication_frequency
+                }
+                
+				modifier = {
+					factor = 0.25
+					has_game_rule = extreme_pregnancy_complication_frequency
+				}
+
+				modifier = {
+					factor = 1.5
+					has_game_rule = fewer_pregnancy_complication_frequency
+				}
+
+				add_character_flag = {
+					flag = birth_will_go_smoothly
+					days = 270
+				}
+			}
+			10 = { #Pregnancy ends prematurely
+				trigger_event = {
+					id = pregnancy.2101
+					days = { 80 120 }
+				}
+			}
+			3 = { #Child dies during delivery (this triggers when the birth "should" have gone down, since we don't want to create the baby)
+				modifier = { #to keep players from dying excessively
+					add = 1
+					is_ai = no
+					has_game_rule = death_player_pregnancy_complication_protection
+				}
+				trigger_event = {
+					id = birth.3001
+					days = { 180 200 }
+				}
+			}
+			2 = { #Mother dies
+				modifier = { #to keep players from dying excessively
+					add = -2
+					is_ai = no
+					NOT = { has_game_rule = no_player_pregnancy_complication_protection }
+				}
+				add_character_flag = { #Flags blocks other birth events
+					flag = birth_mother_will_die
+					days = 270
+				}
+			}
+			2 = { #Mother and child dies (this triggers when the birth "should" have gone down, since we don't want to create the baby)
+				modifier = { #to keep players from dying excessively
+					add = -2
+					is_ai = no
+					NOT = { has_game_rule = no_player_pregnancy_complication_protection }
+				}
+				trigger_event = {
+					id = birth.3021
+					days = { 180 200 }
+				}
+			}
+			10 = { #Sickly child (all other events happen as usual)
+				modifier = { # Yeah PDX, that was really needed, having a 7.5% complication chance was too high, 6.5% is much better. We won't speak about why this doctrine lowers the chance of pregnancy ending prematurely.
+					factor = 0.5 # Religious doctrine focusing on providing a sanitary birthing chamber and supplies should have a substantial impact on birth complications.
+					faith = {
+						has_doctrine_parameter = healthier_children_active
+					}
+				}
+				add_character_flag = { #Flags blocks other birth events
+					flag = birth_child_will_become_sickly
+					days = 270
+				}
+			}
+			5 = { #Ill mother (all other events happen as usual)
+				modifier = { #to keep players from dying excessively
+					add = -4
+					is_ai = no
+					has_game_rule = default_player_pregnancy_complication_protection
+				}
+				modifier = { #to keep players from dying excessively
+					add = 3
+					is_ai = no
+					has_game_rule = death_player_pregnancy_complication_protection
+				}
+				add_character_flag = { #Flags blocks other birth events
+					flag = birth_mother_will_become_ill
+					days = 270
+				}
+			}
+		}
+	}
+}
+
+# New contagious diseases contagion
+deadlytimes.1000 = {
+	hidden = yes
+
+	trigger = {
+		deadlytimes_has_new_contagious_disease_trigger = yes
+	}
+
+	immediate = {
+		save_scope_as = disease_spreader
+
+		save_health_court_owner_effect = { SCOPE_NAME = contagion_court_owner }
+
+		if = {
+			limit = { exists = scope:contagion_court_owner }
+
+			scope:contagion_court_owner = {
+				save_court_physician_as_effect = { SCOPE_NAME = physician }
+			}
+
+			#Add everyone in the same court (ruler, prisoners, guests) and friendly scheme targets/owners to list
+			create_contagion_list_effect = { SICK_CHARACTER = root CONTAGION_COURT_OWNER = scope:contagion_court_owner }
+
+			random_list = {
+				20 = { #Contagion successful
+					random_in_list = {
+						list = contagion_list
+						weight = {
+							base = 75
+							modifier = { #Proximity increases likelihood of contagion
+								is_imprisoned = yes
+								root = { is_imprisoned = yes }
+								add = 125
+							}
+							modifier = { #Proximity increases likelihood of contagion
+								is_imprisoned = no
+								root = { is_imprisoned = no }
+								add = 125
+							}
+							modifier = {
+								add = -50
+								has_perk = wash_your_hands_perk
+							}
+							modifier = {
+								root = { is_imprisoned = no }
+								scope:disease_type = flag:typhus
+								is_commanding_army = yes
+								is_knight = yes
+								add = {
+									value = 150
+									if = {
+										limit = {
+											has_perk = wash_your_hands_perk
+										}
+										subtract = 50
+									}
+								}
+							}
+					
+						}
+						contract_disease_notify_preset_flag_effect = yes
+					}
+				}
+				0 = { #Contagion prevented by physician
+					modifier = {
+						has_good_disease_treatment_trigger = yes
+						add = 80
+					}
+					#No contagion this time!
+				}
+			}
+		}
+
+		#Next contagion
+		trigger_event = {
+			id = deadlytimes.1000
+			days = { smallpox_contagion_min smallpox_contagion_max }
+		}
+	}
+}

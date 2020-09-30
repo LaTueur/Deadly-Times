@@ -1,0 +1,21 @@
+﻿deadlytimes_contagious_disease_trigger = {
+    OR = {
+        scope:disease_type = flag:smallpox
+        scope:disease_type = flag:bubonic_plague
+        exists = scope:disease_is_contagious 
+    }
+}
+
+deadlytimes_has_new_contagious_disease_trigger = {
+    exists = scope:disease_is_contagious
+    OR = {
+        AND = {
+            scope:disease_type = flag:pneumonic
+            has_trait = pneumonic
+        }
+        AND = {
+            scope:disease_type = flag:typhus
+            has_trait = typhus
+        }
+    }
+}

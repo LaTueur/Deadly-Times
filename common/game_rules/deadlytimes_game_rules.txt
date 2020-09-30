@@ -1,0 +1,67 @@
+﻿minor_disease_frequency = {
+	default = more_minor_disease_frequency
+
+	fewer_minor_disease_frequency = {
+		flag = blocks_achievements
+    }
+
+	default_minor_disease_frequency = {
+	
+	}
+    
+    more_minor_disease_frequency = {
+
+    }
+
+    extreme_minor_disease_frequency = {
+
+    }
+}
+
+pregnancy_complication_frequency = {
+	default = more_pregnancy_complication_frequency
+
+	fewer_pregnancy_complication_frequency = {
+		flag = blocks_achievements
+    }
+
+	default_pregnancy_complication_frequency = {
+	
+	}
+    
+    more_pregnancy_complication_frequency = {
+
+    }
+
+    extreme_pregnancy_complication_frequency = {
+
+    }
+}
+
+contagious_disease_types = {
+	default = more_contagious_disease_types
+
+	default_contagious_disease_types = {
+
+    }
+
+	more_contagious_disease_types = {
+	
+	}
+}
+
+player_pregnancy_complication_protection = {
+	default = death_player_pregnancy_complication_protection
+
+	default_player_pregnancy_complication_protection = {
+
+    }
+
+	no_player_pregnancy_complication_protection = {
+	
+	}
+
+	death_player_pregnancy_complication_protection = {
+	
+	}
+}
