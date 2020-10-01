@@ -20,7 +20,7 @@
  setting_default_contagious_disease_types:0 "Off"
  setting_default_contagious_disease_types_desc:0 "Only Smallpox and the Black Death will be contagious."
  setting_more_contagious_disease_types:0 "On"
- setting_more_contagious_disease_types_desc:0 "Pneumonia and Camp Fever will sometimes start to spread in the court like Smallpox and the Black Death."
+ setting_more_contagious_disease_types_desc:0 "Consumption and Camp Fever will sometimes start to spread in the court like Smallpox and the Black Death."
 
  setting_default_player_pregnancy_complication_protection:0 "Default"
  setting_default_player_pregnancy_complication_protection_desc:0 "The player characters will never die in childbirth and will less often get ill after giving birth. Other pregnancy complications happen as per normal."
