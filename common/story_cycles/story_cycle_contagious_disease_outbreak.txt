@@ -28,69 +28,14 @@
 			trigger = {
 				story_owner = {
 					NOR = {
-						trigger_if = {
-							limit = { scope:story = { var:disease = flag:smallpox } }
-							has_trait = smallpox
-						}
-						trigger_else_if = {
-							limit = { scope:story = { var:disease = flag:bubonic_plague } }
-							has_trait = bubonic_plague
-						}
-						trigger_else_if = {
-							limit = { scope:story = { var:disease = flag:pneumonic } }
-							has_trait = pneumonic
-						}
-						trigger_else_if = {
-							limit = { scope:story = { var:disease = flag:typhus } }
-							has_trait = typhus
-						}
-						trigger_else = {
-							always = no
-						}
+						has_story_disease_trigger = yes
 						any_courtier_or_guest = {
-							trigger_if = {
-								limit = { scope:story = { var:disease = flag:smallpox } }
-								has_trait = smallpox
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:bubonic_plague } }
-								has_trait = bubonic_plague
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:pneumonic } }
-								has_trait = pneumonic
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:typhus } }
-								has_trait = typhus
-							}
-							trigger_else = {
-								always = no
-							}
+							has_story_disease_trigger = yes
 						}
 						any_prisoner = {
-							trigger_if = {
-								limit = { scope:story = { var:disease = flag:smallpox } }
-								has_trait = smallpox
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:bubonic_plague } }
-								has_trait = bubonic_plague
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:pneumonic } }
-								has_trait = pneumonic
-							}
-							trigger_else_if = {
-								limit = { scope:story = { var:disease = flag:typhus } }
-								has_trait = typhus
-							}
-							trigger_else = {
-								always = no
-							}
+							has_story_disease_trigger = yes
 						}
 					}
-
 				}
 			}
 			effect = {

@@ -188,8 +188,10 @@ deadlytimes.1000 = {
 							modifier = {
 								root = { is_imprisoned = no }
 								scope:disease_type = flag:typhus
-								is_commanding_army = yes
-								is_knight = yes
+								OR = {
+									is_commanding_army = yes
+									is_knight = yes
+								}
 								add = {
 									value = 150
 									if = {
